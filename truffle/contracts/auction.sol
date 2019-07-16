@@ -1,34 +1,42 @@
 pragma solidity >= 0.5.0;
 
 contract Auction {
-  mapping(address => uint256) bids;
-  address public latestBidder;
-  uint256 latestBid;
-  address public seller;
-
-  address highestBidder;
-  bool firstBid = true;
+  //  Represents a set of people entering the auction to bid on a product.
+  address[] public bidders;
   
-  function auction(uint256 bid) public {
+  // Represents the bids received by the seller.
+  uint256[] bids;
+  
+  // Represents an address auctioning a product.
+  address public seller;
+  
+  address highestBidder;
+
+  function auction() public {
       seller = msg.sender;
-      latestBid = bid * 1 ether;
   }
 
-  function submitBid(address name, uint256 bid) public {
-    require(bids[name] < bid);
+  function submitBid() public payable {
+        require(msg.value > 0.01 ether);
+        bidders.push(msg.sender);
+        bids.push(msg.value);
+  }
+    
 
-    if (firstBid || bid > bids[highestBidder]) {
-      highestBidder = name;
-      firstBid = false;
+  function determineWinner() public {
+    uint highestBid = 0;
+    uint i;
+
+    for (i = 0; i < bids.length; i++) {
+        if (bids[i] > highestBid) {
+            highestBid = bids[i];
     }
-    bids[name] = bid;
   }
+   highestBidder = bidders[i];
+   bidders = new address[](0);
+ }
 
   function getHighestBidder() view public returns (address) {
     return highestBidder;
-  }
-
-  function getTopBid() view public returns (uint256) {
-    return bids[highestBidder];
   }
 }

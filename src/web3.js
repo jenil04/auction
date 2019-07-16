@@ -1,4 +1,4 @@
-const Web3 = require('web3');
+import Web3 from 'web3';
 
 const provider = (typeof window.web3 !== 'undefined') ?
     window.web3.currentProvider :
