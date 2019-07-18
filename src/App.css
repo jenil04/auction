@@ -1,0 +1,32 @@
+.App {
+    text-align: center;
+  }
+
+.text-right{
+    background-color: #282c34;
+    text-align: right;
+    align-items: right;
+    justify-content: right;
+    color: white;
+}
+
+.bg {
+  color: powderblue;
+}
+
+body {
+  margin: 0;
+  background: url('./bg.jpg');
+  background-size: 1440px 800px;
+  background-repeat:no-repeat;
+ display: compact;
+  font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding-bottom: 50px;
+}
+
+#main {
+  border: 1px solid #000000;
+  display: flex;
+  flex-wrap: wrap;
+  align-content:center;
+}
