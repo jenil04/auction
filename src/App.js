@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import web3 from "./web3";
 import auction from "./auction";
-import Particles from "react-particles-js";
 import { Layout } from "./Layout";
 import "./App.css";
 import { Button } from "react-bootstrap";
@@ -15,17 +14,16 @@ class App extends Component {
       maintxt: "Decentralized Auction on the Ethereum Blockchain",
       speed: 100,
       displaytxt: "",
-      tmpTitle: "Calculating number of active users",
+      tmpTitle: "Calculating number of active users...",
       fullTitle: "There are currently {`this.state.bids.length`} ",
       j: 0,
       bids: [],
+      bidders: [],
       seller: "",
       auctionValue: "",
       highestBidder: "",
       value: "",
-      message: "",
-      name: "",
-      bidAmount: ""
+      message: ""
     };
   }
 
@@ -45,6 +43,7 @@ class App extends Component {
 
     const seller = await auction.methods.seller().call();
     const highestBidder = await auction.methods.getHighestBidder().call();
+    const bidders = await auction.methods.getBidders().call();
     const auctionValue = await web3.eth.getBalance(
       "0x4098878608e26825d248f7996267B49f2d1Bd49e"
     );
@@ -52,6 +51,7 @@ class App extends Component {
     this.setState({
       seller,
       highestBidder,
+      bidders,
       auctionValue
     });
   }
@@ -101,36 +101,16 @@ class App extends Component {
     return (
       <React.Fragment>
         <Layout>
-          <Particles
-            className="bg-cover-image fixed w-screen h-screen z-n1"
-            params={{
-              particles: {
-                number: {
-                  value: 50
-                },
-                size: {
-                  value: 3
-                }
-              },
-              interactivity: {
-                events: {
-                  onhover: {
-                    enable: true,
-                    mode: "repulse"
-                  }
-                }
-              }
-            }} 
-          >
-            {" "}
-          </Particles>
-          <div class="justify-center">
-              <h1 class="text-white justify-center text-center" >{displaytext}</h1>
+          <div class="text-center">
+              <h2 class="text-white justify-center text-center" >{displaytext}</h2>
                 <h5 class="w-full block text-white text-5xl font-fancy font-bold text-center justify-center mb-8">
                   There are currently {this.state.bids.length} people entered,
                   competing to buy{" "}
                   {web3.utils.fromWei(this.state.auctionValue, "ether")} ether{" "}
                 </h5>
+
+                <hr/>
+
                 <form onSubmit={this.onEnter} >
                   <h4 class="text-white justify-center" >Join the Auction</h4>
                   <div>
@@ -141,8 +121,10 @@ class App extends Component {
                         this.setState({ value: event.target.value })
                       }
                     />
+                    
                   </div>
                   <Button class= "text-center">Make a bid</Button>
+                  <hr/>
                 </form>
                 <h4 class="text-white justify-center" >Reaveal the Highest Bidder</h4>
                 <Button onClick={this.onClick} class = "text-center">Highest Bidder</Button>
