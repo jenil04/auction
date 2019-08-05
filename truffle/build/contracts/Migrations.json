@@ -193,7 +193,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 189,
+                        "referencedDeclaration": 198,
                         "src": "159:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -278,7 +278,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 189,
+                        "referencedDeclaration": 198,
                         "src": "210:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -839,7 +839,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 189,
+                        "referencedDeclaration": 198,
                         "src": "159:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -924,7 +924,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 189,
+                        "referencedDeclaration": 198,
                         "src": "210:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -1366,9 +1366,16 @@
     "name": "solc",
     "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
   },
-  "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-07-18T20:24:05.597Z",
+  "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0x3f9F508b665147Cc43beCfcBF11d6cF9B4AAB365",
+      "transactionHash": "0xed9d61ce1ee8228ac22d9894cba08982937ebee49e1e9eaa9c77c29bcb4c97f5"
+    }
+  },
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-08-02T20:49:53.307Z",
   "devdoc": {
     "methods": {}
   },

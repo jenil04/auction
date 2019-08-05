@@ -10,22 +10,22 @@
     color: white;
 }
 
-.bg {
-  color: powderblue;
-}
-
 div {
     top: '-15px';
+}
+
+span {
+  font-size: 24px;
 }
 
 body {
   margin: 0;
   background: url('./bg.jpg');
-  background-size: 1440px 800px;
+  background-size: auto;
   background-repeat:no-repeat;
- display: compact;
-  font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  padding-bottom: 50px;
+  display: compact;
+  font: 13px/18px "Consolas", monaco, monospace;;
+  padding-top: 200px;
 }
 
 #main {

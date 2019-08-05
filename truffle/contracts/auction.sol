@@ -17,8 +17,8 @@ contract Auction {
       seller = msg.sender;
   }
 
-  function submitBid() public payable {
-        require(msg.value > 0.01 ether);
+  function submitBid() public payable {        
+        // initializing bidders & bids.
         bidders.push(msg.sender);
         bids.push(msg.value);
   }
@@ -33,6 +33,7 @@ contract Auction {
             highestBid = bids[i];
     }
   }
+  
    highestBidder = bidders[i];
    highestBidder.transfer(highestBid);
    
@@ -44,7 +45,11 @@ contract Auction {
     return highestBidder;
   }
   
-  function getBidders() view public returns (address[] memory){
+  function getBidders() view public returns (address[]){
       return bidders;
+  }
+  
+  function getBids() view public returns (uint256[]) {
+      return bids;
   }
 }

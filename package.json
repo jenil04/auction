@@ -10,8 +10,9 @@
     "react-particles-js": "^2.4.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.5",
+    "react-typist": "^2.0.5",
     "styled-components": "^4.3.2",
-    "truffle-hdwallet-provider": "^1.0.14",
+    "truffle-hdwallet-provider": "^1.0.15",
     "web3": "^1.0.0-beta.46"
   },
   "scripts": {

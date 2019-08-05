@@ -1,6 +1,6 @@
 import web3 from "./web3";
 
-let auctionABI = [
+let abi = [
   {
     "constant": true,
     "inputs": [],
@@ -107,8 +107,22 @@ let auctionABI = [
     "payable": false,
     "stateMutability": "view",
     "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getBids",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   }
 ];
-let auctionAddress = "0x4098878608e26825d248f7996267B49f2d1Bd49e";
+let address = "0x8B167cf1754005F502774Ffe63857C8C66B5B9f1";
 
-export default new web3.eth.Contract(auctionABI, auctionAddress);
+export default new web3.eth.Contract(abi, address);
