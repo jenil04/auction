@@ -123,6 +123,6 @@ let abi = [
     "type": "function"
   }
 ];
-let address = "0x8B167cf1754005F502774Ffe63857C8C66B5B9f1";
+let address = "0x0bb3f4d023f3e10df7feeec5396dc96445f61899";
 
 export default new web3.eth.Contract(abi, address);

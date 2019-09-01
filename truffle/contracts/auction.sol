@@ -12,7 +12,7 @@ contract Auction {
   
   // The highest bidder for the auction.
   address highestBidder;
-
+  
   function auction() public {
       seller = msg.sender;
   }
@@ -21,26 +21,20 @@ contract Auction {
         // initializing bidders & bids.
         bidders.push(msg.sender);
         bids.push(msg.value);
-  }
-    
-
-  function determineWinner() public {
-    uint256 highestBid = 0;
-    uint256 i;
-
-    for (i = 0; i < bids.length; i++) {
-        if (bids[i] > highestBid) {
-            highestBid = bids[i];
-    }
+        
+        //initializing highestBidder
+        highestBidder = msg.sender;
   }
   
-   highestBidder = bidders[i];
-   highestBidder.transfer(highestBid);
-   
-   // Reset: for a new auction round.
-   bidders = new address[](0);
- }
-
+  function determineWinner() public {
+        
+        bidders[bidders.length-1].transfer(
+            bids[bids.length -1]);
+        
+        // Reset to a new round of auction.
+        bidders = new address[](0);
+    }
+  
   function getHighestBidder() view public returns (address) {
     return highestBidder;
   }

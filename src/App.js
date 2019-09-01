@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import web3 from "./web3";
 import auction from "./auction";
+
+// Styling
 import { Layout } from "./Layout";
 import "./App.css";
-import { Button } from "react-bootstrap";
 import Typist from 'react-typist';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
+    state = {
       bids: [],
       bidders: [],
       seller: "",
@@ -19,16 +17,14 @@ class App extends Component {
       value: "",
       message: ""
     };
-  }
+
 
   async componentDidMount() {
     const bids = await auction.methods.getBids().call();
     const seller = await auction.methods.seller().call();
     const highestBidder = await auction.methods.getHighestBidder().call();
     const bidders = await auction.methods.getBidders().call();
-    const auctionValue = await web3.eth.getBalance(
-      "0x8B167cf1754005F502774Ffe63857C8C66B5B9f1"
-    );
+    const auctionValue = await web3.eth.getBalance(auction.options.address);
 
     this.setState({
       bids,
@@ -39,17 +35,17 @@ class App extends Component {
     });
   }
 
-  onEnter = async event => {
+  onSubmit = async (event) => {
     event.preventDefault();
     const accounts = await web3.eth.getAccounts();
 
     this.setState({
-      message: "Processing..."
+      message: "Confirming transaction..."
     });
 
     await auction.methods.submitBid().send({
       from: accounts[0],
-      valuecd: web3.utils.toWei(this.state.value, "ether")
+      value: web3.utils.toWei(this.state.value, "ether")
     });
 
     this.setState({
@@ -60,17 +56,13 @@ class App extends Component {
   onClick = async () => {
     const accounts = await web3.eth.getAccounts();
 
-    this.setState({
-      message: "Picking the highest bidder..."
-    });
+    this.setState({ message: 'Awaiting transaction success...' })
 
     await auction.methods.determineWinner().send({
       from: accounts[0]
     });
 
-    this.setState({
-      message: "Sold, to the highest bidder!"
-    });
+    this.setState({ message: 'A winner has been picked!' });
   };
 
   render() {
@@ -79,18 +71,9 @@ class App extends Component {
         <Layout>
           <div className="text-center">
               <Typist> <span className="text-white justify-center text-center" > Decentralized Auction on Ethereum.</span></Typist>
-              <br />
-                <Typist> 
-                  <span className="w-full block text-white text-5xl font-fancy font-bold text-center justify-center mb-8">
-                  There are currently {this.state.bidders.length} people entered,
-                  competing to bid {" "}
-                  {web3.utils.fromWei(this.state.auctionValue, "ether")} ether.{" "}
-                  </span>
-                </Typist>
-
                 <hr/>
 
-                <form onSubmit={this.onEnter} >
+                <form onSubmit={this.onSubmit} >
                   <h4 className="text-white justify-center" >Join the Auction: </h4>
                   <br />
                   <div>
