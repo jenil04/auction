@@ -9,7 +9,7 @@
     "react-dom": "^16.8.3",
     "react-particles-js": "^2.4.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "2.1.5",
+    "react-scripts": "5.0.1",
     "react-typist": "^2.0.5",
     "styled-components": "^4.3.2",
     "truffle-hdwallet-provider": "^1.0.15",
